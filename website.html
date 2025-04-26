@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apurva Textiles</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <header>
+        <h1>
+            <img src="nrm1.png" alt="Apurva Textiles Logo" width="70" height="70" style="vertical-align: middle;">
+            Apurva Textiles
+        </h1>
+        
+        <nav>
+            <button onclick="showPage('home')">Home</button>
+            <button onclick="showPage('products')">Products</button>
+            <button onclick="showPage('about')">About Us</button>
+            <button onclick="showPage('machinery')">Machinery</button>
+            <button onclick="showPage('contact')">Contact Details</button>
+        </nav>
+    </header>
+    <main>
+        <!-- Home Section -->
+        <div id="home" class="page">
+            <h2>Welcome to Apurva Textile</h2>
+            <p>Your one-stop destination for high-quality towels and napkins.</p>
+        </div>
+
+        <!-- Products Section -->
+        <div id="products" class="page product-grid">
+            <div class="product" onclick="showDetails('t1.jpg' , 'Soft Cotton Towel', 'High-quality cotton towel with extra absorbency.')">
+                <img src="t1.jpg" alt="Soft Cotton Towel" width="180" height="200">
+                <h2>Soft Cotton Towel</h2>
+            </div>
+            <div class="product" onclick="showDetails('towel3.jpg', 'Luxury Bath Towel', 'Premium bath towel for a spa-like experience.')">
+                <img src="towel3.jpg" alt="Luxury Bath Towel" width="200" height="200">
+                <h2>Luxury Bath Towel</h2>
+            </div>
+            <div class="product" onclick="showDetails('napkin1.jpg', 'Hand Napkin Set', 'Soft and durable hand napkins.')">
+                <img src="napkin1.jpg" alt="Hand Napkin Set" width="200" height="200">
+                <h2>Hand Napkin Set</h2>
+            </div>
+        </div>
+
+        <!-- About Us Section -->
+        <div id="about" class="page">
+            <h2>About Us</h2>
+            <img src="infra.png" width="550" height="400" alt="About Us Image" class="section-image">
+            <pre> <p>At Apurva Textile, we pride ourselves on offering top-quality towels and napkins for all your home and hospitality needs.
+             We focus on the best materials and craftsmanship to ensure comfort and durability.
+             Apurva Textiles is one of the leading industry in diverse city of Solapur. We take pleasure in providing 100% Cotton iconic Terry towels with aim to emerge as a global leader.
+             We as a brand have been consistently delivering high quality with innovative designs & vibrant hues towels since the past three decades.
+             Apurva Textiles is pride of its Professional Management, Excellent Quality Control infrastructure and foolproof Logistic Management.</p></pre>
+        </div>
+
+        <!-- Machinery Section (Video Player) -->
+        <div id="machinery" class="page">
+            <h2>Machinery</h2>
+            <video width="600" height="400" controls>
+                <source src="mach1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p>Watch our advanced machinery in action.</p>
+        </div>
+
+        <!-- Contact Details Section -->
+        <div id="contact" class="page">
+            <h2>Contact Us</h2>
+            <img src="nrm1.png" width="250" height="250" alt="Contact Us Image" class="section-image">
+            <p>Email: info@apurvatextile.com</p>
+            <p>Phone: +91 9730120990</p>
+            <p>Address: Gandhi Nagar, Solapur, India</p>
+
+            <!-- Google Map Embed -->
+            <h3>Our Location</h3>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3157.1619806091526!2d75.89299847601706!3d17.65992088393406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc5db1b9dffb2bf%3A0x50c6488b245ba3b6!2sGandhi%20Nagar%2C%20Solapur%2C%20Maharashtra%20413005!5e0!3m2!1sen!2sin!4v1706635812345!5m2!1sen!2sin"
+                    width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <!-- Product Details Section (Hidden by default) -->
+        <div id="product-details" class="hidden">
+            <img id="detail-image" src="" alt="">
+            <h2 id="detail-title"></h2>
+            <p id="detail-description"></p>
+            <button onclick="showPage('contact')">Buy Now</button> <!-- Buy Now Button -->
+            <button onclick="hideDetails()">Back to Products</button>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 Apurva Textiles. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/apurvatextiles.2?igsh=ZmczaHNzb2tieG9j" target="_blank">Instagram</a>
+                <a href="https://www.justdial.com/jdmart/Solapur/Apurva-Textiles-Office:--1357-Bhadrawati-Peth-Gandhi-Nagar/9999PX217-X217-210730125314-T2L7_BZDET/catalogue?nid=&cat_b2b_flag=&searchfrom=lst" target="_blank">JustDial</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Show the selected page
+        function showPage(page) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(pageElement => {
+                pageElement.style.display = 'none';
+            });
+
+            // Show the selected page
+            document.getElementById(page).style.display = 'block';
+
+            // Hide the product details section when navigating to another page
+            document.getElementById('product-details').style.display = 'none';
+            document.querySelector('.product-grid').style.display = 'grid'; // Ensure the product grid is visible when on products page
+
+            // Hide the products grid when navigating to the Contact page or About Us page
+            if (page === 'contact' || page === 'about' || page === 'machinery') {
+                document.querySelector('.product-grid').style.display = 'none';
+            } else {
+                document.querySelector('.product-grid').style.display = 'grid'; // Show product grid for other pages
+            }
+        }
+
+        // Show the product details
+        function showDetails(image, title, description) {
+            document.getElementById('detail-image').src = image;
+            document.getElementById('detail-title').textContent = title;
+            document.getElementById('detail-description').textContent = description;
+            document.querySelector('.product-grid').style.display = 'none'; // Hide products
+            document.getElementById('product-details').style.display = 'block'; // Show product details
+        }
+
+        // Hide the product details and return to the product grid
+        function hideDetails() {
+            document.querySelector('.product-grid').style.display = 'grid'; // Show products
+            document.getElementById('product-details').style.display = 'none'; // Hide product details
+        }
+
+        // Initialize to show the home page
+        document.addEventListener("DOMContentLoaded", function() {
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
